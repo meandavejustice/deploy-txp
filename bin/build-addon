@@ -1,0 +1,62 @@
+#!/usr/bin/env node
+/*
+ * This Source Code is subject to the terms of the Mozilla Public License
+ * version 2.0 (the 'License'). You can obtain a copy of the License at
+ * http://mozilla.org/MPL/2.0/.
+ */
+
+/* eslint-disable no-console */
+const manifest = require(process.cwd() + '/package.json');
+const spawn = require('child_process').spawn;
+const packageAddon = spawn('npm', ['run', 'package']);
+const signAddon = require('../lib/sign');
+
+function packageAddonComplete(exitCode) {
+  signAddon({
+    name: manifest.name,
+    version: manifest.version,
+    apiKey: process.env['TESTPILOT_AMO_USER'],
+    apiSecret: process.env['TESTPILOT_AMO_SECRET']
+  }, signAddonComplete);
+}
+
+function signAddonComplete(err) {
+  if (err) process.exit();
+  process.env['TESTPILOT_ADDON_ID'] = '@'+manifest.name;
+  process.env['TESTPILOT_ADDON_VERSION'] = manifest.version;
+  console.log('addon signed, TESTPILOT_ADDON_ID, and TESTPILOT_ADDON_VERSION set ');
+  console.log(process.env['TESTPILOT_ADDON_VERSION']);
+  console.log(process.env['TESTPILOT_ADDON_ID']);
+}
+
+packageAddon.stdout.on('data', (data) => {
+  console.log(`stdout: ${data}`);
+});
+
+packageAddon.stderr.on('data', (data) => {
+  console.log(`stderr: ${data}`);
+});
+
+packageAddon.on('close', packageAddonComplete);
+
+
+// './sign'
+
+
+// 1. Build a .xpi file named signed-addon.xpi and put it in the current working directory
+// 2. Sign that add-on, using the credentials in TESTPILOT_AMO_USER and TESTPILOT_AMO_SECRET
+// 3. Set the TESTPILOT_ADDON_ID environment variable to the em:id string of the add-on you just built
+// 4. Set the TESTPILOT_ADDON_VERSION environment variable to the version string of the add-on you just built
+// 5. Fail with a non-zero status if anything goes wrong
+
+// npm run package
+// ./sign
+// TESTPILOT_ADDON_ID=fs.readFile().id
+// TESTPILOT_ADDON_VERSION=require('package.json').version
+
+
+// bash script
+
+// npm run deploy-txp
+
+
