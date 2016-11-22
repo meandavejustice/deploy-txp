@@ -1,5 +1,6 @@
 Deploy-txp
 ==========
+[![NPM](https://nodei.co/npm/deploy-txp.png?downloads=true)](https://npmjs.org/package/deploy-txp)
 
 This is a package to make packaging, deploying, and signing testpilot
 experiments easier.
