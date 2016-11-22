@@ -1,15 +1,14 @@
 {
   "name": "deploy-txp",
   "version": "1.0.0",
-  "description": "====",
-  "main": "index.js",
+  "description": "tool for helping deploy testpilot experiments",
   "bin": "bin/build-addon",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
+  "author": "meandave",
   "license": "MPL-2.0",
   "dependencies": {
-    "jpm": "1.2.2"
+    "jetpack-id": "1.0.0",
+    "jpm": "1.2.2",
+    "jsonwebtoken": "7.1.9",
+    "request": "2.79.0"
   }
 }

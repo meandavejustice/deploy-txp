@@ -16,4 +16,3 @@ and `TESTPILOT_AMO_SECRET`.
 
 ## LICENSE
 [Mozilla Public License 2.0](LICENSE)
-
