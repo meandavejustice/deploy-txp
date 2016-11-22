@@ -12,7 +12,7 @@ const spawn = require('child_process').spawn;
 const packageAddon = spawn('npm', ['run', 'package']);
 const signAddon = require('../lib/sign');
 
-function packageAddonComplete() {
+function packageAddonComplete(exitCode) {
   signAddon({
     name: manifest.name,
     version: manifest.version,
@@ -30,7 +30,7 @@ function signAddonComplete(err) {
   console.log(process.env['TESTPILOT_ADDON_ID']);
 }
 
-packageAddon.stdout.on('data', console.log);
-packageAddon.stderr.on('data', console.log);
+packageAddon.stdout.on('data', (data) => console.log(''+data));
+packageAddon.stderr.on('data', (data) => console.log(''+data));
 
 packageAddon.on('close', packageAddonComplete);
