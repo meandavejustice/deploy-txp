@@ -14,7 +14,7 @@ const signAddon = require('../lib/sign');
 
 function packageAddonComplete(exitCode) {
   signAddon({
-    name: manifest.name,
+    id: getId(manifest),
     version: manifest.version,
     apiKey: process.env['TESTPILOT_AMO_USER'],
     apiSecret: process.env['TESTPILOT_AMO_SECRET']
