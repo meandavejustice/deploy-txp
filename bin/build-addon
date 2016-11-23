@@ -22,7 +22,7 @@ function packageAddonComplete(exitCode) {
 }
 
 function signAddonComplete(err) {
-  if (err) process.exit();
+  if (err) process.exit(1);
   process.env['TESTPILOT_ADDON_ID'] = getId(manifest);
   process.env['TESTPILOT_ADDON_VERSION'] = manifest.version;
   console.log('addon signed, TESTPILOT_ADDON_ID, and TESTPILOT_ADDON_VERSION set ');
