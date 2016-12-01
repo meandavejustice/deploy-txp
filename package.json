@@ -1,14 +1,23 @@
 {
   "name": "deploy-txp",
-  "version": "1.0.6",
   "description": "tool for helping deploy testpilot experiments",
-  "bin": "bin/build-addon",
+  "version": "1.0.6",
   "author": "meandave",
-  "license": "MPL-2.0",
+  "bin": "bin/build-addon",
+  "bugs": {
+    "url": "https://github.com/meandavejustice/deploy-txp/issues"
+  },
   "dependencies": {
     "jetpack-id": "1.0.0",
     "jpm": "1.2.2",
     "jsonwebtoken": "7.1.9",
     "request": "2.79.0"
+  },
+  "homepage": "https://github.com/meandavejustice/deploy-txp#readme",
+  "keywords": [],
+  "license": "MPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meandavejustice/deploy-txp.git"
   }
 }

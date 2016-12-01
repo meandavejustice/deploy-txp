@@ -13,7 +13,7 @@ const spawn = require('child_process').spawn;
 const packageAddon = spawn('npm', ['run', 'package']);
 const signAddon = require('../lib/sign');
 
-function packageAddonComplete(exitCode) {
+function packageAddonComplete() {
   signAddon({
     id: getId(manifest),
     version: manifest.version,
