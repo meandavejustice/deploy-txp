@@ -1,6 +1,6 @@
 {
   "name": "deploy-txp",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "tool for helping deploy testpilot experiments",
   "bin": "bin/build-addon",
   "author": "meandave",

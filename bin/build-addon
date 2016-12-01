@@ -6,6 +6,7 @@
  */
 
 /* eslint-disable no-console */
+const fs = require('fs');
 const getId = require('jetpack-id');
 const manifest = require(process.cwd() + '/package.json');
 const spawn = require('child_process').spawn;
@@ -23,11 +24,18 @@ function packageAddonComplete(exitCode) {
 
 function signAddonComplete(err) {
   if (err) process.exit(1);
-  process.env['TESTPILOT_ADDON_ID'] = getId(manifest);
-  process.env['TESTPILOT_ADDON_VERSION'] = manifest.version;
-  console.log('addon signed, TESTPILOT_ADDON_ID, and TESTPILOT_ADDON_VERSION set ');
-  console.log(process.env['TESTPILOT_ADDON_VERSION']);
-  console.log(process.env['TESTPILOT_ADDON_ID']);
+  console.log('addon signed');
+
+  const filePath = `${process.cwd()}/addon.env`;
+  const envContent = `
+  TESTPILOT_ADDON_ID=${getId(manifest)}
+  TESTPILOT_ADDON_VERSION=${manifest.version}
+  `;
+
+  fs.writeFile(filePath, envContent, (err) => {
+    if (err) throw err;
+    console.log(`TESTPILOT_ADDON_ID, and TESTPILOT_ADDON_VERSION set in ${filePath}`);
+  });
 }
 
 packageAddon.stdout.on('data', (data) => console.log(''+data));
