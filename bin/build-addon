@@ -27,10 +27,8 @@ function signAddonComplete(err) {
   console.log('addon signed');
 
   const filePath = `${process.cwd()}/addon.env`;
-  const envContent = `
-  TESTPILOT_ADDON_ID=${getId(manifest)}
-  TESTPILOT_ADDON_VERSION=${manifest.version}
-  `;
+  const envContent = `TESTPILOT_ADDON_ID=${getId(manifest)}
+TESTPILOT_ADDON_VERSION=${manifest.version}`;
 
   fs.writeFile(filePath, envContent, (err) => {
     if (err) throw err;
